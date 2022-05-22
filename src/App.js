@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Accoordion, NavBrand } from "./components/molecule";
+import Routing from "./Config/Routing";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid grid-cols-5 gap-3">
+      <div className=" col-span-1 bg-blue-50">
+        <div>
+          {/* Nav Brand */}
+          <NavBrand />
+        </div>
+        <div>
+          {/* Accordion */}
+          <Accoordion mainTitle={'Dashboad'} to={'/'} />
+          <Accoordion mainTitle={'News'} to={'/news'} subTitle={[
+            { name: 'Manage', to: '/news/manage' },
+            { name: 'History', to: '/news/history' },
+          ]} />
+          <Accoordion mainTitle={'Complaint'} to={'/Complaint'} subTitle={[
+            { name: 'Manage', to: '/news/manage' },
+            { name: 'History', to: '/news/history' },
+          ]} />
+        </div>
+
+      </div>
+      <div className=" col-span-4 bg-blue-50 h-screen overflow-auto p-6">
+        {/* Routes */}
+        <Routing />
+      </div>
     </div>
   );
 }

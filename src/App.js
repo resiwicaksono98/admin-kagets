@@ -17,8 +17,8 @@ function App() {
             { name: 'History', to: '/news/history' },
           ]} />
           <Accoordion mainTitle={'Complaint'} to={'/Complaint'} subTitle={[
-            { name: 'Manage', to: '/news/manage' },
-            { name: 'History', to: '/news/history' },
+            { name: 'Main', to: '/complaint/main' },
+            { name: 'History', to: '/complaint/history' },
           ]} />
         </div>
 

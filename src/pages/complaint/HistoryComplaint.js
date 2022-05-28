@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextInfoPage } from '../../components/molecule';
 
-const History = () => {
+const HistoryComplaint = () => {
     return (
         <div>
             <TextInfoPage name={'History News Kagets App'} />
             <div className='bg-white h-screen rounded-xl p-6'>
-                <div className='text-xl font-mono'>- Log Data News - </div>
+                <div className='text-xl font-mono'>- Log Data Complaint - </div>
                 <div className='py-8'>
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -55,7 +55,7 @@ const History = () => {
                                         19 Mei 2022
                                     </td>
                                 </tr>
-                            
+
 
                             </tbody>
                         </table>
@@ -67,4 +67,4 @@ const History = () => {
     );
 }
 
-export default History;
+export default HistoryComplaint;

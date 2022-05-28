@@ -8,7 +8,7 @@ const Manage = () => {
     return (
         <div>
             <TextInfoPage name={'Manage News'} />
-            <Search />
+            <Search placeholder={'Search News'}/>
             <div className="grid grid-cols-4 gap-3 py-8 ">
                 <CardNews img={covidImg} title="Jokowi Bilang Bebas Buka Masker" created={'19 Mei 2022'} published={'21 Mei 2022'} deleted={'-'} />
                 <CardNews img={covidImg} title="Jokowi Bilang Bebas Buka Masker" created={'19 Mei 2022'} published={'21 Mei 2022'} deleted={'-'} />

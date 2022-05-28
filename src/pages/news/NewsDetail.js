@@ -10,7 +10,7 @@ const NewsDetail = () => {
             <TextInfoPage name={'Detail News blabla'} />
             <div className=' bg-white rounded-xl p-6'>
                 <form >
-                    <div className='className=grid grid-cols-2 gap-3'>
+                    <div className='grid grid-cols-2 gap-3'>
                         <Select label={'Category'} options={[
                             { name: 'GoRide', value: 'goride' },
                             { name: 'GoCar', value: 'gocar' },
@@ -18,7 +18,7 @@ const NewsDetail = () => {
                         <Input label={'Title'} type={'text'} />
                         <Input label={'Title'} type={'file'} onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} />
                         <div className="mb-4">
-                            {image ? <img src={image} alt="preview" className=' rounded-xl h-52' /> : <di className="flex justify-center items-center bg-gray-100 h-52">No Image Preview</di>}
+                            {image ? <img src={image} alt="preview" className=' rounded-xl h-52' /> : <di className="flex justify-center items-center bg-gray-100 h-52 w-72">No Image Preview</di>}
                         </div>
                     </div>
                     <TextEditor label={'Description'} />

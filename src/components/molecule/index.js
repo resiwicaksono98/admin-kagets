@@ -10,8 +10,8 @@ import TextEditor from "./TextEditor";
 import Table from "./Table";
 import Modal from "./Modal";
 import NavigateBack from "./NavigateBack";
+import Moment from "./Moment";
 
 
 
-
-export {Select,Button,Modal,NavigateBack, Accoordion, NavBrand, TextInfoPage, Search, Pagination, Input, TextEditor, Table}
+export {Select,Button,Modal,NavigateBack,Moment, Accoordion, NavBrand, TextInfoPage, Search, Pagination, Input, TextEditor, Table}

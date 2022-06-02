@@ -17,7 +17,7 @@ const Dashboard = () => {
                 <div className="bg-gradient-to-br from-blue-600 to-blue-400 rounded-2xl p-6 shadow-xl flex items-center">
                     <ThumbUpIcon height={'70px'} />
                     <div className="grid mx-auto gap-y-2 tracking-widest">
-                        <div className='uppercase text-xl'>Success</div>
+                         <div className='uppercase text-xl'>Success</div>
                         <div className='text-center bg-white text-black rounded-full'>214</div>
                     </div>
                 </div>

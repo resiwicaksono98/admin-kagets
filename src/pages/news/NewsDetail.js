@@ -1,35 +1,80 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast,Zoom, ToastContainer } from 'react-toastify';
+import { toast, Zoom, Flip, ToastContainer } from 'react-toastify';
 import { allCategory } from '../../api/categoryApi';
-import { getNewsById } from '../../api/newsApi';
-import { Button, Input, Select, TextEditor, TextInfoPage } from '../../components/molecule';
+import { getNewsById, NewsUpdate } from '../../api/newsApi';
+import { Button, ConfirmAlert, TextEditor, TextInfoPage } from '../../components/molecule';
 import { } from '../../components/molecule/Toast';
-import { BaseImageUrl, BaseUrl } from '../../Config/ConfigApi';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { NewsYupSchema } from '../../components/atom/yup/NewsYup';
-
-
+import { useFormik } from 'formik';
+import { FormikImage, FormikInput, FormikSelect } from '../../components/molecule/formik';
+import { SchemaNews } from '../../components/molecule/yup/NewsYup';
 
 
 const NewsDetail = () => {
     const navigate = useNavigate()
-    const [loadImage, setLoadImage] = useState()
     const [newst, setNewst] = useState([])
     const [categories, setCategories] = useState([])
     const { id } = useParams()
-    const { register, control, handleSubmit, formState: {errors} } = useForm({
-       resolver: yupResolver(NewsYupSchema)
+
+    const formik = useFormik({
+        // initial value
+        initialValues: {
+            title: '',
+            categoryId: '',
+            rate: '',
+            image: [],
+            previewImage: '',
+            description: ''
+        },
+        // Validate schema
+        validationSchema: SchemaNews(),
+        // Handle submission
+        onSubmit: async (value) => {
+            ConfirmAlert({ title: 'Update Data Saat Ini', message: 'Lanjut Update Ga Bre?', onClick: () => updateHandler() })
+
+            const updateHandler = async () => {
+                try {
+                    const loading = toast.loading("Please wait....", { position: toast.POSITION.TOP_CENTER })
+                    await NewsUpdate({ id: id, value: value })
+                        .then((res) => {
+                            toast.update(loading, {
+                                render: 'Success Update', type: 'success', transition: Flip, isLoading: false, closeButton: () => {
+                                    setTimeout(() => {
+                                        navigate('/news/manage')
+                                    }, 1200)
+                                }
+                            })
+                        })
+                        .catch((err) => console.log(err, "error"))
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
     })
+
+
+
+
+
+    // const handleDelete = async (value) => {
+    //     value.preventDefault()
+    //     console.log(value);
+    // }
 
     useEffect(() => {
         let isUnmount = false
         if (!isUnmount) {
             const getNews = () => {
-                getNewsById({id: id})
-                    .then(result => setNewst(result))
+                getNewsById({ id: id })
+                    .then(res => {
+                        setNewst(res)
+                        formik.values.categoryId = res[0].categoryId
+                        formik.values.title = res[0].title
+                        formik.values.rate = res[0].rate
+                        formik.values.description = res[0].description
+                    })
                     .catch(err => console.log(err.message))
             }
             const getCategory = () => {
@@ -43,40 +88,7 @@ const NewsDetail = () => {
         return () => {
             isUnmount = false
         }
-    }, [id])
-
-    const onSubmit = async (data) => {
-        try {
-            await toast.promise(
-                axios.put(`${BaseUrl}/news/${id}`, {
-                    title: data.title,
-                    categoryId: data.category,
-                    image: data.image[0],
-                    description: data.description
-                }, {
-                    headers: {
-                        "content-type": "multipart/form-data"
-                    }
-                })
-                    .then((res) => setTimeout(() => {
-                        navigate('/news/manage')
-                    }, 1200))
-                    .catch((err) => console.log(err))
-                , {
-                    pending: 'Loading...',
-                    success: {
-                        render() {
-                            return 'Yey Success!'
-                        }, autoClose: 1000
-                    },
-                    error: 'Rejected!!! Try Again..'
-                }
-            )
-        } catch (error) {
-            console.log(error.message);
-        }
-
-    };
+    }, [id]);
     return (
         <div>
             <TextInfoPage name={'Detail News blabla'} />
@@ -84,28 +96,35 @@ const NewsDetail = () => {
                 {newst.map((news, index) => (
                     <form key={index}>
                         <div className='grid grid-cols-2 gap-3'>
-                            <Controller name='category' defaultValue={news.category.id} control={control} render={({ field }) =>
-                                <Select label={'Category'}  {...field}
-                                    options={categories.map((category) => (
-                                        { name: category.name, value: category.id }
-                                    ))} />} />
-                            <Controller
-                                name={'title'} control={control} defaultValue={news.title} render={({ field }) => <Input label={'Title'} type={'text'}  {...field} errors={errors.title?.message}  />} />
-                            <Input label={'Image'} type={'file'} name={'image'} {...register('image')} onChange={(e) => setLoadImage(URL.createObjectURL(e.target.files[0]))} />
-                            <div className="mb-4">
-                                {loadImage ? <img src={loadImage} alt="preview" className=' rounded-xl h-52' /> : news.image ? <img src={`${BaseImageUrl}/${news.image}`} alt="preview" className=' rounded-xl h-52' /> : <div className="flex justify-center items-center bg-gray-100 h-52 w-72">No Image Preview</div>}
+                            <FormikSelect label={'Category'} name={'categoryId'} error={formik.errors.categoryId && formik.touched.categoryId ? formik.errors.categoryId : ''}  {...formik.getFieldProps('categoryId')}
+                                options={categories.map((category) => (
+                                    { name: category.name, value: category.id }
+                                ))} />
+                            {/* Input title */}
+                            <FormikInput label={'Title'} type={'text'} name={'title'}  {...formik.getFieldProps('title')} error={formik.errors.title && formik.touched.title ? formik.errors.title : ''} />
+                            {/* Input Rate */}
+                            <FormikInput label={'Rate'} type={'number'} name={'rate'} placeholder={'Rating Berita'} {...formik.getFieldProps('rate')} error={formik.errors.rate && formik.touched.rate ? formik.errors.rate : ''} />
+                            {/* Input Image And Preview */}
+                            <FormikImage label={'Image'} name={'image'} onChange={(e) => {
+                                formik.setFieldValue('image', e.currentTarget.files[0])
+                                formik.setFieldValue('previewImage', URL.createObjectURL(e.currentTarget.files[0]))
+                            }} />
+                            {/* Load Image */}
+                            <div className='mb-4'>
+                                {formik.values.previewImage ? <img src={formik.values.previewImage} alt="preview" className=' rounded-xl h-52' /> : <img src={`http://localhost:3000/${news.image}`} alt="preview" className=' rounded-xl h-52' />}
+
                             </div>
                         </div>
-                        <div>
-                            <Controller name='description' defaultValue={news.description} control={control} render={({ field }) =>
-                                <TextEditor label={'Description'}  {...field} />
-                            } />
-                        </div>
+                        {/* Rich Editor */}
+                        <TextEditor placeholder={'Deskripsi Berita'} label={'Description'} name={'description'} value={formik.values.description} onChange={(e) => {
+                            formik.setFieldValue('description', e)
+                        }} error={formik.errors.description && formik.touched.description ? formik.errors.description : ''} onBlur={formik.handleBlur} />
+
                         <div className="flex justify-between items-center">
-                            <Button text={'Update News'} onClick={handleSubmit(onSubmit)} buttonClass="bg-blue-600 hover:bg-blue-700" />
-                            <Button text={'Publish News'} buttonClass="bg-green-600 hover:bg-green-700" />
+                            <Button text={'Update News'} disabled={!formik.isValid ? true : false} onClick={formik.handleSubmit} buttonClass="bg-blue-600 hover:bg-blue-700" />
+                            <Button text={'Delete News'} buttonClass="bg-green-600 hover:bg-green-700" />
                         </div>
-                        <ToastContainer transition={Zoom}/>
+                        <ToastContainer transition={Zoom} />
                     </form>
                 ))}
             </div>

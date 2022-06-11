@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, NavigateBack, Select, TextEditor, TextInfoPage } from '../../components/molecule';
+import { Button, NavigateBack, TextEditor, TextInfoPage } from '../../components/molecule';
 
 const EditComplaint = () => {
     const [image, setImage] = useState()
@@ -10,13 +10,13 @@ const EditComplaint = () => {
               <NavigateBack linkTo={'/complaint/main'} />
                 <form >
                     <div className='grid grid-cols-2 gap-3 py-8'>
-                        <Input type={'text'} label={'Name'} />
+                        {/* <Input type={'text'} label={'Name'} />
                         <Select label={'Problem'} options={[
                             { name: 'Suspend Akun', value: 'Suspend Akun' },
                             { name: 'Putus Mitra', value: 'Putus Mitra' },
                             { name: 'Orderan Fiktif', value: 'Orderan Fiktif' },
                         ]} />
-                        <Input label={'Support Image'} type={'file'} onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} />
+                        <Input label={'Support Image'} type={'file'} onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} /> */}
                         <div className="mb-4">
                             {image ? <img src={image} alt="preview" className=' rounded-xl h-52' /> : <di className="flex justify-center items-center bg-gray-100 h-52 w-72">No Image Preview</di>}
                         </div>

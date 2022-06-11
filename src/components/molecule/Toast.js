@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const ToastSuccess = ({ title }) => {
     toast.success(title, {
-        position: toast.POSITION.TOP_CENTER,
+       
         autoClose: 2000,
         pauseOnHover: false,
         closeOnClick: true,

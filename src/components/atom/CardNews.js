@@ -13,7 +13,6 @@ const CardNews = ({ img, id, title, created, published }) => {
                     <div className={`pt-2 py-2 my-2 text-xl  h-16 text-white px-3   ${title.length > 30 ? 'overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-blue-300   scrollbar-thumb-rounded-full scrollbar-track-rounded-full' : 'none'}`}>{title}</div>
                     <div className={`text-base font-mono rounded-md my-2 py-1 px-2   flex items-center justify-center text-white ${publish ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600'}`}>Pusblished
                         {publish ? <CheckIcon height={'20px'} /> : <XIcon height={'20px'} />}
-
                     </div>
                     <div className='pt-1 text-xs text-gray-300 grid gap-2 font-mono'>
                         <div>Created On: {created}</div>

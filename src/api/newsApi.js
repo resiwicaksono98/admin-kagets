@@ -1,8 +1,8 @@
 import axios from "axios"
 import { BaseUrl } from "../Config/ConfigApi"
 
-export const getNews = async (page) => {
-    const { data } = await axios.get(`${BaseUrl}/news/?page=${page}`)
+export const getNews = async () => {
+    const { data } = await axios.get(`${BaseUrl}/news`)
     return data
 }
 

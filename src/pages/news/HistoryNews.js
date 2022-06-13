@@ -32,7 +32,7 @@ const HistoryNews = () => {
                                         1
                                     </td>
                                     <th scope='row' className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        Cape Hamba Ya Allah
+                                        Driver Gojek Tangerang Raya
                                     </th>
                                     <td className="px-6 py-4">
                                         publish
@@ -46,7 +46,7 @@ const HistoryNews = () => {
                                         2
                                     </td>
                                     <th scope='row' className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        Cepet Cepet Kelar Ya
+                                        Driver Gojek Tangerang Raya
                                     </th>
                                     <td className="px-6 py-4">
                                         Delete
@@ -55,7 +55,7 @@ const HistoryNews = () => {
                                         19 Mei 2022
                                     </td>
                                 </tr>
-                            
+
 
                             </tbody>
                         </table>

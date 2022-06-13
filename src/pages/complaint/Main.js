@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Table, Search, TextInfoPage, Pagination, Modal } from '../../components/molecule';
+import { Button, Table, Search, TextInfoPage, Modal } from '../../components/molecule';
 
 
 const Main = () => {
@@ -52,8 +52,6 @@ const Main = () => {
                     </td>
                 </tr>
             } />
-
-            <Pagination />
         </div>
     );
 }

@@ -54,15 +54,6 @@ const NewsDetail = () => {
         }
     })
 
-
-
-
-
-    // const handleDelete = async (value) => {
-    //     value.preventDefault()
-    //     console.log(value);
-    // }
-
     useEffect(() => {
         let isUnmount = false
         if (!isUnmount) {

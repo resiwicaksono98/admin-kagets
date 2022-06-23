@@ -1,32 +1,35 @@
-import { Accoordion, NavBrand } from "./components/molecule";
+import { useEffect, useState } from "react";
 import Routing from "./Config/Routing";
+import { getUser } from "./api/authApi";
+
 
 function App() {
-  return (
-    <div className="grid grid-cols-5 gap-3">
-      <div className=" col-span-1 bg-blue-50">
-        <div>
-          {/* Nav Brand */}
-          <NavBrand />
-        </div>
-        <div>
-          {/* Accordion */}
-          <Accoordion mainTitle={'Dashboad'} to={'/'} />
-          <Accoordion mainTitle={'News'} to={'/news'} subTitle={[
-            { name: 'Manage', to: '/news/manage' },
-            { name: 'History', to: '/news/history' },
-          ]} />
-          <Accoordion mainTitle={'Complaint'} to={'/Complaint'} subTitle={[
-            { name: 'Main', to: '/complaint/main' },
-            { name: 'History', to: '/complaint/history' },
-          ]} />
-        </div>
+  const [user, setUser] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => {
+    if (!isMounted) {
+      getUser()
+        .then(result => {
+          setUser(result)
+          setLoggedIn(true)
+          setIsMounted(true)
+        })
+        .catch(err => {
+         setIsMounted(true)
+        })
+      
+    }
+  }, [])
 
-      </div>
-      <div className=" col-span-4 bg-blue-50 h-screen overflow-auto p-6">
-        {/* Routes */}
-        <Routing />
-      </div>
+  if(!isMounted ){
+    return <div>Loading...</div>
+  }
+
+
+  return (
+    <div>
+      <Routing user={user} auth={loggedIn}/>
     </div>
   );
 }

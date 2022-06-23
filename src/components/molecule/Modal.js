@@ -1,6 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 export default function Modal({ textModal, titleModal, descModal, buttonDialog, buttonClassModal }) {
     let [isOpen, setIsOpen] = useState(false)
@@ -51,9 +50,9 @@ export default function Modal({ textModal, titleModal, descModal, buttonDialog, 
                                         {titleModal}
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500">
+                                        <div className="text-sm text-gray-500">
                                             {descModal}
-                                        </p>
+                                        </div>
                                     </div>
 
                                     <div className="mt-4">

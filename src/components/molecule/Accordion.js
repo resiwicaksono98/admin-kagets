@@ -3,9 +3,9 @@ import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import { Link } from 'react-router-dom';
 
-export default function Accoordion({ mainTitle, to, subTitle = '' }) {
+export default function Accoordion({ mainTitle, to,newClass, subTitle = '' }) {
     return (
-        <div className="w-full px-4 py-1 ">
+        <div className={`w-full px-4 py-1 ${newClass}`}>
             <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2 ">
                 <Disclosure>
                     {({ open }) => (
@@ -18,7 +18,7 @@ export default function Accoordion({ mainTitle, to, subTitle = '' }) {
                                             } h-5 w-5 text-purple-500`}
                                     />
                                 </Disclosure.Button></Link>
-                            <Disclosure.Panel className="px-4 pt-2 pb-2 text-sm text-gray-500  ">
+                            <Disclosure.Panel className="px-4 text-sm text-gray-500  ">
                                 {subTitle ? subTitle.map((subName) => (
                                     <Link to={subName.to} key={subName.name}>
                                         <div className='flex justify-between w-full text-base cursor-pointer font-semibold py-2 text-blue-500 hover:text-blue-600 '>

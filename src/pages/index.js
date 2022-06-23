@@ -4,13 +4,17 @@ import Manage from './news/Manage'
 import News from './news/News'
 import HistoryNews from './news/HistoryNews'
 import Main from './complaint/Main'
-import HistoryComplaint from './complaint/HistoryComplaint'
-import UpdateResult from './complaint/UpdateResult'
+import UpdateResult from './complaint/SendMessage'
 import EditComplaint from './complaint/EditComplaint'
 import CreateNews from './news/CreateNews'
+import Login from './auth/Login'
+import MainCategory from './category/MainCategory'
+import CreateCategory from './category/CreateCategory'
+import EditCategory from './category/EditCategory'
+import MainProblem from './problem/MainProblem'
+import EditProblem from './problem/EditProblem'
+import CreateProblem from './problem/CreateProblem'
 
 
 
-
-
-export {HistoryNews,CreateNews,Dashboard,EditComplaint, News,UpdateResult, Manage, NewsDetail, Main, HistoryComplaint}
+export {Login,HistoryNews,CreateNews,MainProblem,EditProblem,CreateProblem,Dashboard,EditComplaint,EditCategory,CreateCategory, News,UpdateResult, Manage,MainCategory, NewsDetail, Main}

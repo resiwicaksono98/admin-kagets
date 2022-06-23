@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from './Button';
 
-const Table = ({ headerTable,body, ClassThead, classTbody }) => {
+const Table = ({ headerTable,body, ClassThead }) => {
     return (
         <div>
             <div className='py-8'>
@@ -18,9 +16,9 @@ const Table = ({ headerTable,body, ClassThead, classTbody }) => {
                             </tr>
                         </thead>
                                     
-                        <tbody>
+                       
                             {body}
-                        </tbody>
+                    
                     </table>
                 </div>
 

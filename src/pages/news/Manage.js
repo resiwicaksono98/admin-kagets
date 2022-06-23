@@ -14,8 +14,6 @@ const Manage = () => {
                     setNewst(result.data.rows)
                 })
                 .catch(err => console.log(err.message))
-
-
         }
         return () => {
             isUnmount = true

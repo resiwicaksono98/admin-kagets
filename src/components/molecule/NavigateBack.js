@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './Button';
+import ButtonLink from './ButtonLink';
 
-const NavigateBack = ({ linkTo }) => {
+const NavigateBack = ({ linkTo, addClass, ...rest }) => {
     return (
-        <Button text={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <ButtonLink  text={<svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${addClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>} buttonClass="bg-blue-500 hover:bg-blue-700 " linkTo={linkTo} />
     );

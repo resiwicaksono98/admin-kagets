@@ -1,6 +1,5 @@
 import { ThumbUpIcon } from '@heroicons/react/solid';
 import React from 'react';
-import { Button } from './components/molecule';
 
 const Dashboard = () => {
     return (

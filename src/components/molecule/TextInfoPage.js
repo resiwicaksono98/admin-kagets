@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TextInfoPage = ({name}) => {
+const TextInfoPage = ({name, addClass}) => {
     return (
-            <div className='mx-2 mb-4 tracking-widest text-gray-400 text-xl'>{name}</div>
+            <div className={`mx-2 mb-4 tracking-widest text-gray-400 text-xl ${addClass}`}>{name}</div>
     );
 }
 

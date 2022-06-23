@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast, Zoom, ToastContainer } from 'react-toastify';
 import { allCategory } from '../../api/categoryApi';
 import { Button, PreviewImage, TextEditor, TextInfoPage } from '../../components/molecule';
@@ -13,7 +12,6 @@ import { SchemaNews } from '../../components/molecule/yup/NewsYup';
 
 
 const CreateNews = () => {
-    const navigate = useNavigate()
     const [categories, setCategories] = useState([])
 
     const formik = useFormik({
@@ -98,8 +96,6 @@ const CreateNews = () => {
                     <TextEditor placeholder={'Deskripsi Berita'} label={'Description'} name={'description'} onChange={(e) => {
                         formik.setFieldValue('description', e)
                     }} error={formik.errors.description && formik.touched.description ? formik.errors.description : ''} onBlur={formik.handleBlur} />
-
-
 
                     <Button text={'Create News'} disabled={!formik.isValid ? true : false} buttonClass="bg-blue-600 hover:bg-blue-700" />
 

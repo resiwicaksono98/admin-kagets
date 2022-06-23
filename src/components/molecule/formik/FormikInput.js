@@ -1,7 +1,6 @@
-import React from 'react';
+import React,{forwardRef} from 'react';
 
-const FormikInput = (props) => {
-    const { label, type, name, placeholder, onChange,error, ...other } = props
+const FormikInput = ({label, type, name, placeholder, onChange,error, ...other},ref) => {
     return (
         <div>
             <div className='mb-4'>
@@ -13,4 +12,4 @@ const FormikInput = (props) => {
     );
 }
 
-export default FormikInput;
+export default forwardRef(FormikInput);

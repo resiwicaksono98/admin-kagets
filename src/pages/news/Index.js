@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../Layout'
 import { getNews } from '../../api/newsApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from '../../features/authSlice'
+import { getMe, refreshAccessToken } from '../../features/authSlice'
 import NewsList from '../../components/features_news/NewsList'
 
 

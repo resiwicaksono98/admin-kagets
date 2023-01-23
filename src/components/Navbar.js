@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -10,8 +11,9 @@ const Navbar = () => {
 
 	const logout = () => {
 		dispatch(LogOut())
+    Cookies.remove('access-token')
 		dispatch(reset())
-		navigate("/")
+		navigate(0)
 	}
 	return (
 		<div>

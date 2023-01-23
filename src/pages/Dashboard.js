@@ -3,24 +3,15 @@ import Layout from './Layout'
 import { IoNewspaper, IoCopy, IoExtensionPuzzle, IoFlame } from 'react-icons/io5'
 import Breadcrumb from '../components/molecule/Breadcrumb'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from '../features/authSlice'
+import { getMe, refreshToken } from '../features/authSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
-	const { isError } = useSelector((state) => state.auth)
+	const { accessToken,user } = useSelector((state) => state.auth)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		dispatch(getMe())
-	}, [dispatch])
 
-
-	useEffect(() => {
-		if (isError) {
-				navigate("/")
-		}
-	}, [isError, navigate])
 
 	return (
 		<Layout>
